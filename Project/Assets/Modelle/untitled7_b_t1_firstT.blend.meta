@@ -1,0 +1,114 @@
+fileFormatVersion: 2
+guid: 07bf9f9cfc479a7429fb09e70c87f1a8
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: aussengel
+    100002: boden1
+    100004: Dach
+    100006: Fensterbretter
+    100008: Schild
+    100010: Thresen
+    100012: Treppen
+    100014: Treppengel
+    100016: Treppenwand
+    100018: Tuerrahmen
+    100020: //RootNode
+    100022: Wand
+    400000: aussengel
+    400002: boden1
+    400004: Dach
+    400006: Fensterbretter
+    400008: Schild
+    400010: Thresen
+    400012: Treppen
+    400014: Treppengel
+    400016: Treppenwand
+    400018: Tuerrahmen
+    400020: //RootNode
+    400022: Wand
+    2300000: aussengel
+    2300002: boden1
+    2300004: Dach
+    2300006: Fensterbretter
+    2300008: Schild
+    2300010: Thresen
+    2300012: Treppen
+    2300014: Treppengel
+    2300016: Treppenwand
+    2300018: Tuerrahmen
+    2300020: Wand
+    3300000: aussengel
+    3300002: boden1
+    3300004: Dach
+    3300006: Fensterbretter
+    3300008: Schild
+    3300010: Thresen
+    3300012: Treppen
+    3300014: Treppengel
+    3300016: Treppenwand
+    3300018: Tuerrahmen
+    3300020: Wand
+    4300000: Treppenwand
+    4300002: Tuerrahmen
+    4300004: Fensterbretter
+    4300006: Treppengel
+    4300008: Treppen
+    4300010: Schild
+    4300012: aussengel
+    4300014: Dach
+    4300016: boden1
+    4300018: Thresen
+    4300020: Wand
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
