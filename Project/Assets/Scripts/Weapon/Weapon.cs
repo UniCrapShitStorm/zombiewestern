@@ -2,10 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 public class Weapon : MonoBehaviour {
-	private float decay = 0.001f;
+	private float decay = 0.5f;
 	private float decayTime = 0.0f;
-	public int maxAmmo;
+	private int maxAmmo;
 	private int currAmmo = 30;
+	
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,7 +20,10 @@ public class Weapon : MonoBehaviour {
 		if(decayTime>Time.time)
 			return;
 		
-		print("test");
+		RaycastHit[] result = Physics.RaycastAll(transform.position, transform.forward);
+		foreach(RaycastHit hit in result) {
+			print("hit "+hit.distance);
+		}
 		
 		decayTime = Time.time+decay;
 		currAmmo--;
