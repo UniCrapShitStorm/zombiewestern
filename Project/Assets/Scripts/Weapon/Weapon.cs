@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour {
 	private int clip;
 	private int maxAmmo; // Patronenanzahl
 	private int currAmmo = 3*6;	
+	public bool drawShells = false;
 	
 	void Start() {
 		Reload();
@@ -39,11 +40,13 @@ public class Weapon : MonoBehaviour {
 			// todo: decal, smoke
 		}
 		
-		GameObject shell = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-		shell.transform.position = transform.position;
-		shell.transform.RotateAroundLocal(new Vector3(0.0f,0.0f,1.0f),360.0f);
-		shell.AddComponent("Rigidbody");
-		shell.GetComponent<Rigidbody>().velocity = -transform.right*10.0f;
+		if(drawShells) {
+			GameObject shell = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+			shell.transform.position = transform.position;
+			shell.transform.RotateAroundLocal(new Vector3(0.0f,0.0f,1.0f),360.0f);
+			shell.AddComponent("Rigidbody");
+			shell.GetComponent<Rigidbody>().velocity = -transform.right*10.0f;
+		}
 		
 		// todo: muzzleflash, smoke
 		
