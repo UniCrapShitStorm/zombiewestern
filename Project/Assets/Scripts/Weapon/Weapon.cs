@@ -13,21 +13,28 @@ public class Weapon : MonoBehaviour
 	public bool drawShells = false;
 	private bool isReloading = false;
 	private Vector3 defaultPos;
+	private Quaternion defaultRot;
+	private Vector3 prevRot;
+	private Quaternion currRotDiff;
 	public Transform weapon = null;
 	
 	void Start()
 	{
 		defaultPos = weapon.localPosition;
+		defaultRot = weapon.localRotation;
 		Reload();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if(weapon == null)
+			return;
+		
 		if(Input.GetButton("Fire1"))
 			Fire();
 		
-		if(Input.GetButton("Reload") && !isReloading)
+		if(Input.GetButton("Reload"))
 			Reload();
 		else
 			isReloading = false;
@@ -36,6 +43,12 @@ public class Weapon : MonoBehaviour
 			ZoomIn();
 		else
 			ZoomOut();
+		
+		Quaternion diff = Quaternion.FromToRotation(prevRot, transform.forward);
+		currRotDiff *= diff;
+		currRotDiff = Quaternion.Slerp(currRotDiff, Quaternion.identity, 0.5f);
+		weapon.localRotation = defaultRot*Quaternion.Inverse(currRotDiff);
+		prevRot = transform.forward;
 	}
 	
 	void Fire()
@@ -80,17 +93,20 @@ public class Weapon : MonoBehaviour
 	
 	void ZoomIn()
 	{
-		Vector3 temp = new Vector3(-0.1f, 0.0f, 0.1f);
-		weapon.localPosition -= (weapon.localPosition-temp)*2.0f*Time.deltaTime;
+		Vector3 temp = new Vector3(-0.1f, -0.04f, 0.1f);
+		weapon.localPosition -= (weapon.localPosition-temp)*4.0f*Time.deltaTime;
 	}
 	
 	void ZoomOut()
 	{
-		weapon.localPosition -= (weapon.localPosition-defaultPos)*2.0f*Time.deltaTime;
+		weapon.localPosition -= (weapon.localPosition-defaultPos)*4.0f*Time.deltaTime;
 	}
 	
 	void Reload()
 	{
+		if(isReloading)
+			return;
+		
 		isReloading = true;
 		if(currAmmo==0) return;
 		
