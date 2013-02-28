@@ -2,14 +2,19 @@ using UnityEngine;
 using System.Collections;
 
 public class Zombie : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+	private int health = 30;
 	
+	void TakeDamage(int damage) {
+		health -= damage;
+		
+		if(health<=0)
+			Die();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void Die() {
+		// todo: Splatter
+		Destroy(gameObject);
+		
+		print("Zombie is dead.");
 	}
 }
