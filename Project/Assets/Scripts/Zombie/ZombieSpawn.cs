@@ -13,11 +13,13 @@ public class ZombieSpawn : MonoBehaviour {
         int NumberOfSpawnPoints = respawnPoints.Length;
 		
 		for (int i = 0; i < NumberOfZombies; i++) {
+			// without -1 cause max is exclusive
 			int spawnPoint = RandomNumber(0, NumberOfSpawnPoints);
 			
 			Vector3 rand = new Vector3(RandomNumber(-4,4), 1, RandomNumber(-4,4));
-			
+	
 			Instantiate(respawnPrefab, respawnPoints[spawnPoint].transform.position + rand, respawnPoints[spawnPoint].transform.rotation);
+
 		}
 	}
 	
@@ -29,7 +31,6 @@ public class ZombieSpawn : MonoBehaviour {
 	// Returns a random integer number between min [inclusive] and max [exclusive]
 	private int RandomNumber(int min, int max)
 	{
-		
-		return Random.Range (min, max);
+		return Random.Range(min, max);
 	}
 }

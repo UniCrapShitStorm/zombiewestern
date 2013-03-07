@@ -4,10 +4,10 @@ using System.Collections;
 public class ZombieMovement: MonoBehaviour {
 	
 	public Transform target;
-	public float rotationSpeed = 2.0f;
+	public float rotationSpeed = 1.5f;
 	public float movingSpeed = 100;
-	public float minimalDistanceToObject = 2.0f;
-	public float distFromSurfaceToCenter = 3;
+	public float minimalDistanceToObject = 3.0f;
+	public float distFromSurfaceToCenter = 0.7f;
 
 	void Awake() {
 		animation.wrapMode = WrapMode.Loop;
@@ -48,11 +48,11 @@ public class ZombieMovement: MonoBehaviour {
 		
 		if (delta.magnitude > minimalDistanceToObject) {
 			velocity = moveDirection.normalized * movingSpeed * Time.deltaTime;
-			animation.CrossFade("run");
+			//animation.CrossFade("run");
 		}
 		else {
 			velocity = Vector3.zero;
-			animation.CrossFade("idle");
+			//animation.CrossFade("idle");
 		}
 		rigidbody.velocity = velocity;
 	}
@@ -60,8 +60,9 @@ public class ZombieMovement: MonoBehaviour {
 	void surfaceDetection() {
 		float surfaceSpeedDown = 100;
 		RaycastHit hit;
+		
 		if (Physics.Raycast(transform.position, -Vector3.up, out hit, distFromSurfaceToCenter)) {
-			if (hit.distance < distFromSurfaceToCenter - 0.1) {
+			if (hit.distance < distFromSurfaceToCenter - 0.2) {
 				rigidbody.velocity += (Vector3.up * surfaceSpeedDown * Time.deltaTime);
 			}
 		}
