@@ -20,8 +20,9 @@ public class Weapon : MonoBehaviour
 	
 	void Start()
 	{
-		defaultPos = weapon.localPosition;
-		defaultRot = weapon.localRotation;
+		weapon = GameObject.Find("FPS_gloves").transform;
+		defaultPos = GameObject.Find("FPS_gloves").transform.localPosition;
+		defaultRot = GameObject.Find("FPS_gloves").transform.localRotation;
 		Reload();
 	}
 	

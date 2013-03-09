@@ -10,7 +10,7 @@ public class ZombieMovement: MonoBehaviour {
 	public float distFromSurfaceToCenter = 0.7f;
 
 	void Awake() {
-		animation.wrapMode = WrapMode.Loop;
+		//animation.wrapMode = WrapMode.Loop;
 	}
 	
 	// Use this for initialization
