@@ -20,10 +20,10 @@ public class ZombieMovement: MonoBehaviour {
 		
 		if (target.position.y >= 4.0f && isUpstairs == false) {
 			isUpstairs = true;
-			int wp = RandomNumber(0,2);
-			if (wp == 0)
-				target = GameObject.Find("WP1").transform;
+			int wp = RandomNumber(1,3);
 			if (wp == 1)
+				target = GameObject.Find("WP1").transform;
+			if (wp == 2)
 				target = GameObject.Find("WP2").transform;
 		}
 		
