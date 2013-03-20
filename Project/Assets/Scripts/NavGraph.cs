@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class NavGraph : MonoBehaviour {
 	
-	public List<string> reachableWaypoints = new List<string>();
+	public List<GameObject> reachableWaypoints = new List<GameObject>();
 	public GameObject[] waypoints;
 	
 	private RaycastHit hit;
@@ -13,22 +13,15 @@ public class NavGraph : MonoBehaviour {
 	void Start () {
 		waypoints = GameObject.FindGameObjectsWithTag("waypoint") as GameObject[];
 
-		foreach (GameObject wp_outer in waypoints) {
-			foreach (GameObject wp_inner in waypoints) {
-				rayDirection = wp_outer.transform.position - wp_inner.transform.position;
-				if (Physics.Linecast (wp_inner.transform.position, wp_outer.transform.position, out hit)) {
-					if (hit.transform.tag == "waypoint") {
-						string wp_inner_name = wp_inner.transform.name.ToString().Substring(2);
-						string wp_outer_name = wp_outer.transform.name.ToString().Substring(2);
-						reachableWaypoints.Add(wp_outer_name + " -> " + wp_inner_name);
-					}
-				}
+		foreach (GameObject wp in waypoints) {
+			if (!Physics.Linecast (transform.position, wp.transform.position)) {
+				reachableWaypoints.Add(wp);
 			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 }

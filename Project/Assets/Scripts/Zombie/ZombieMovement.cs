@@ -12,7 +12,6 @@ public class ZombieMovement: MonoBehaviour {
 	public bool isUpstairs = false;
 	
 	void Start() {
-		
 	}
 	
     void Update() {
