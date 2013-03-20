@@ -62,6 +62,8 @@ public class Weapon : MonoBehaviour
 			return;
 		}
 		
+		weapon.localPosition -= new Vector3(0.0f, 0.0f, 0.1f);
+		
 		RaycastHit[] result = Physics.RaycastAll(transform.position, transform.forward);
 		foreach(RaycastHit hit in result)
 		{
