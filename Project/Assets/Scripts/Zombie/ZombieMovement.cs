@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class ZombieMovement: MonoBehaviour {
-	
+
 	public Transform target;
     public float speed = 6.0F;
     public float jumpSpeed = 8.0F;
@@ -11,7 +11,15 @@ public class ZombieMovement: MonoBehaviour {
 	
 	public bool isUpstairs = false;
 	
+	void Start() {
+		
+	}
+	
     void Update() {
+		if (target == null) {
+			return;
+		}
+		
         CharacterController controller = GetComponent<CharacterController>();
 		moveDirection = (target.position - transform.position) * Time.deltaTime;
         moveDirection *= speed;
