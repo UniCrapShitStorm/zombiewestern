@@ -4,13 +4,50 @@ using System.Collections;
 public class ZombieMovement: MonoBehaviour {
 	
 	public Transform target;
+    public float speed = 6.0F;
+    public float jumpSpeed = 8.0F;
+    public float gravity = 20.0F;
+    public Vector3 moveDirection = Vector3.zero;
+	
+	public bool isUpstairs = false;
+	
+    void Update() {
+        CharacterController controller = GetComponent<CharacterController>();
+		moveDirection = (target.position - transform.position) * Time.deltaTime;
+        moveDirection *= speed;
+        moveDirection.y -= gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
+		
+		if (target.position.y >= 4.0f && isUpstairs == false) {
+			isUpstairs = true;
+			int wp = RandomNumber(0,2);
+			if (wp == 0)
+				target = GameObject.Find("WP1").transform;
+			if (wp == 1)
+				target = GameObject.Find("WP2").transform;
+		}
+		
+		if (target.position.y < 4.0f) {
+			isUpstairs = false;
+		}
+    }
+	
+	// Returns a random integer number between min [inclusive] and max [exclusive]
+	private int RandomNumber(int min, int max)
+	{
+		return Random.Range(min, max);
+	}
+}
+	
+	/*
+	public Transform target;
 	public float rotationSpeed = 1.5f;
 	public float movingSpeed = 100;
 	public float minimalDistanceToObject = 3.0f;
 	public float distFromSurfaceToCenter = 0.7f;
 
 	void Awake() {
-		//animation.wrapMode = WrapMode.Loop;
+		animation.wrapMode = WrapMode.Loop;
 	}
 	
 	// Use this for initialization
@@ -48,11 +85,11 @@ public class ZombieMovement: MonoBehaviour {
 		
 		if (delta.magnitude > minimalDistanceToObject) {
 			velocity = moveDirection.normalized * movingSpeed * Time.deltaTime;
-			//animation.CrossFade("run");
+			animation.CrossFade("run");
 		}
 		else {
 			velocity = Vector3.zero;
-			//animation.CrossFade("idle");
+			animation.CrossFade("idle");
 		}
 		rigidbody.velocity = velocity;
 	}
@@ -71,5 +108,4 @@ public class ZombieMovement: MonoBehaviour {
 		}
 		
 		Debug.DrawRay(transform.position, -Vector3.up * distFromSurfaceToCenter, Color.green);
-	}
-}
+	}*/
