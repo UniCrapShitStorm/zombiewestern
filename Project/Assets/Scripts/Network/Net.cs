@@ -21,6 +21,8 @@ public class Net : MonoBehaviour {
 	private NetworkConnectionError status;
 	private string statusmsg;
 	
+	private string ipaddr = "127.0.0.1";
+	
 	void Start () {
 		//playerPosition = GameObject.Find("First Person Controller").transform;
 	}
@@ -95,9 +97,7 @@ public class Net : MonoBehaviour {
 		((GameObject)thirdPerson).GetComponentInChildren<SkinnedMeshRenderer>().renderer.enabled = false;
 	}
 	
-	void OnGUI() {
-		string ipaddr = "127.0.0.1";
-		
+	void OnGUI() {		
 		if(!showMenu) return;
 		
 		if(!Network.isServer)
@@ -105,7 +105,7 @@ public class Net : MonoBehaviour {
 				HostServer();
 		
 		if(!Network.isClient) {
-			GUI.TextArea(new Rect(0,100,100,30),ipaddr);			
+			ipaddr = GUI.TextArea(new Rect(0,100,100,30),ipaddr, 100);			
 			if(GUI.Button(new Rect(0,130,100,30), "Connect")) {
 				Connect(ipaddr);
 			}
