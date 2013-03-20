@@ -3,7 +3,7 @@ using System.Collections;
 
 
 public class Net : MonoBehaviour {
-	private bool showMenu = false;
+	private bool showMenu = true;
 	private int port = 27888;
 	
 	public GameObject firstPersonPrefab;
@@ -32,15 +32,19 @@ public class Net : MonoBehaviour {
 		if(Network.isClient) {}
 		
 		if(Input.GetKeyDown(KeyCode.Escape)) {
-			if(showMenu) {
-				showMenu = false;
-				Screen.showCursor = false;
-				Screen.lockCursor = true;
-			} else {
-				showMenu=true;
-				Screen.showCursor = true;
-				Screen.lockCursor = false;
-			}
+			ToggleMenu();
+		}
+	}
+	
+	void ToggleMenu() {
+		if(showMenu) {
+			showMenu = false;
+			Screen.showCursor = false;
+			Screen.lockCursor = true;
+		} else {
+			showMenu=true;
+			Screen.showCursor = true;
+			Screen.lockCursor = false;
 		}
 	}
 	
@@ -58,7 +62,7 @@ public class Net : MonoBehaviour {
 	void HostServer() {
 		statusmsg = "Hosting...";
 		status = Network.InitializeServer(16, port, true);
-		
+		ToggleMenu();
 	}
 	
 	void OnServerInitialized() {
@@ -80,6 +84,7 @@ public class Net : MonoBehaviour {
 	
 	void OnConnectedToServer() {
 		SpawnPlayer();
+		ToggleMenu();
 	}
 	
 	void OnDisconnectedFromServer() {
@@ -114,9 +119,12 @@ public class Net : MonoBehaviour {
 				Disconnect();
 		}
 		
-		GUI.TextField(new Rect(0,Screen.height-90,100,30), currPlayer+" Player");
-		
-		if(Network.isServer)
-		GUI.TextField(new Rect(0,Screen.height-60,100,30), statusmsg + status.ToString());
+		if(Network.isServer) {
+			if(GUI.Button(new Rect(0,0,100,30), "Disconnect"))
+				Disconnect();
+			
+			GUI.TextField(new Rect(0,Screen.height-90,100,30), (currPlayer+1)+" Player");
+			GUI.TextField(new Rect(0,Screen.height-60,100,30), statusmsg + status.ToString());
+		}
 	}
 }
