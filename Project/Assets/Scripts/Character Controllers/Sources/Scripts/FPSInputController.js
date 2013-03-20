@@ -30,7 +30,30 @@ function Update () {
 	// Apply the direction to the CharacterMotor
 	motor.inputMoveDirection = transform.rotation * directionVector;
 	motor.inputJump = Input.GetButton("Jump");
-	motor.inputRun = Input.GetButton("Run");
+	motor.inputRun = !Input.GetButton("Run");
+}
+
+ // this script pushes all rigidbodies that the character touches
+var pushPower = 2.0;
+function OnControllerColliderHit (hit : ControllerColliderHit)
+{
+	var body : Rigidbody = hit.collider.attachedRigidbody;
+	// no rigidbody
+	if (body == null || body.isKinematic)
+		return;
+	
+	// We dont want to push objects below us
+	if (hit.moveDirection.y < -0.3) 
+		return;
+	
+	// Calculate push direction from move direction, 
+	// we only push objects to the sides never up and down
+	var pushDir : Vector3 = Vector3 (hit.moveDirection.x, 0, hit.moveDirection.z);
+	// If you know how fast your character is trying to move,
+	// then you can also multiply the push velocity by that.
+	
+	// Apply the push
+	body.velocity = pushDir * pushPower;
 }
 
 // Require a character controller to be attached to the same game object

@@ -89,7 +89,6 @@ public class Weapon : MonoBehaviour
 	
 	void ClipEmpty()
 	{
-		print("Plz reload");
 	}
 	
 	void ZoomIn()
