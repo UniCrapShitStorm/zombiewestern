@@ -19,6 +19,9 @@ public class ZombieMovement: MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(target==null)
+			return;
+
 		rotateTo(target.position);
 		walk (target.position);
 		surfaceDetection();
