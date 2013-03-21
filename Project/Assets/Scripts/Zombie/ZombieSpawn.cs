@@ -19,13 +19,11 @@ public class ZombieSpawn : MonoBehaviour {
 			Vector3 rand = new Vector3(RandomNumber(-4,4), 1, RandomNumber(-4,4));
 	
 			Instantiate(respawnPrefab, respawnPoints[spawnPoint].transform.position + rand, respawnPoints[spawnPoint].transform.rotation);
-
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 	
 	// Returns a random integer number between min [inclusive] and max [exclusive]

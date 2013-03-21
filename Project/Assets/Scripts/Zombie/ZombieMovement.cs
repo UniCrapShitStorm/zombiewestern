@@ -4,6 +4,9 @@ using System.Collections;
 public class ZombieMovement: MonoBehaviour {
 
 	public Transform target;
+	
+	
+	
     public float speed = 6.0F;
     public float jumpSpeed = 8.0F;
     public float gravity = 20.0F;
@@ -18,6 +21,8 @@ public class ZombieMovement: MonoBehaviour {
 		if (target == null) {
 			return;
 		}
+		
+		
 		
         CharacterController controller = GetComponent<CharacterController>();
 		moveDirection = (target.position - transform.position) * Time.deltaTime;
