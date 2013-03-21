@@ -41,6 +41,7 @@ public class Net : MonoBehaviour {
 	
 	// UI
 	private string ipaddr = "127.0.0.1";
+	public Texture menuBackground;
 	
 	void Start () {
 		
@@ -220,12 +221,21 @@ public class Net : MonoBehaviour {
 		}
 		
 		if((showMenu&MENU_MAIN)==MENU_MAIN) {
-			if(!Network.isServer)
-				if(GUI.Button(new Rect(0,0,100,30), "Host"))
+			GUI.Label(new Rect(0,0,Screen.width,Screen.height), menuBackground);
+			
+			if(!Network.isServer&&!Network.isClient) {
+				if(GUI.Button(new Rect(Screen.width*0.5f-50,50,100,40), "Host"))
 					HostServer();
 			
+				if(GUI.Button(new Rect(Screen.width*0.5f-50,100,100,40), "Join"))
+					showMenu = MENU_CONNECT;
+				
+				if(GUI.Button(new Rect(Screen.width*0.5f-50,200,100,40), "Exit"))
+					Application.Quit();
+			}
+			
 			if(Network.isClient||Network.isServer)
-				if(GUI.Button(new Rect(0,130,100,30), "Disconnect"))
+				if(GUI.Button(new Rect(Screen.width*0.5f-50,50,100,40), "Disconnect"))
 					Disconnect();
 			
 			if(Network.isServer) {				
@@ -235,9 +245,15 @@ public class Net : MonoBehaviour {
 		}
 		
 		if((showMenu&MENU_CONNECT)==MENU_CONNECT) {
-			ipaddr = GUI.TextArea(new Rect(0,100,100,30),ipaddr, 100);	
-			if(GUI.Button(new Rect(0,130,100,30), "Connect")) {
+			GUI.Label(new Rect(0,0,Screen.width,Screen.height), menuBackground);
+			
+			if(GUI.Button(new Rect(Screen.width*0.5f-50,200,100,40), "Back"))
+				showMenu = MENU_MAIN;
+			
+			ipaddr = GUI.TextArea(new Rect(Screen.width*0.5f-50,100,100,20),ipaddr, 100);
+			if(GUI.Button(new Rect(Screen.width*0.5f-50,130,100,30), "Connect")) {
 				Connect(ipaddr);
+				showMenu = MENU_MAIN;
 			}
 		}
 	}
